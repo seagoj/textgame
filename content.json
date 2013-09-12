@@ -1,0 +1,6 @@
+{
+    "origin" : {
+        "description": "You find yourself at a BBQ.",
+        "choices": [1,2,3]
+    }
+}
