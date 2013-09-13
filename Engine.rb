@@ -18,8 +18,21 @@ class Engine
     end
 
     def analyze(action)
-        # Check for valid actions
-        puts action
+        action = action.downcase.tr(" ", "_").tr("\n", "").to_sym
+        if action == :look
+            self.scenario
+        elsif @contentHash[@progress].key?(action)
+            event = @contentHash[@progress][action] 
+            if event.is_a?(Hash)
+                puts event[:description]
+                @progress = event[:next].to_sym
+                self.scenario
+            else
+                puts event
+            end
+        else
+            puts @contentHash[:dont_understand]
+        end
     end
 end
 

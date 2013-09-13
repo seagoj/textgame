@@ -1,6 +1,15 @@
 {
     "origin" : {
-        "description": "You find yourself at a BBQ.",
-        "choices": [1,2,3]
-    }
+        "description": "You find yourself on your way to meet a 'friend' at a BBQ. You walk down a dark hallway to a wooden door. You can hear conversation on the other side, but can't quite make it out.",
+        "knock_on_the_door": {
+            "description": "You knock on the door and the conversation stops. You hear someone moving towards the door.",
+            "next": "bbq_door_open"
+        },
+        "open_the_door": "Don't you think you should knock first?"
+    },
+    "bbq_door_open": {
+        "description": "The door opens and there is a creepy, bearded man to greet you.",
+        "actions": {}
+    },
+    "dont_understand": "I don't understand"
 }
