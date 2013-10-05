@@ -1,0 +1,71 @@
+#!/usr/bin/env ruby
+require 'json'
+require 'open-uri'
+require 'openssl'
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+
+class Engine 
+    @@contentFile = 'content.json'
+    @@progressFile = 'progress'
+    @@update = false
+
+    def initialize
+        puts "\e[H\e[2J"
+        self.update if @@update
+        @contentHash = JSON.parse(File.open(@@contentFile).read(), :symbolize_names => true)
+        progress = File.open(@@progressFile).read().to_sym if File.exists?(@@progressFile)
+        @progress = (progress if !progress.nil? && @contentHash.key?(progress)) || :origin
+        puts "#{@contentHash[:header]}\n\n"
+        self.scenario
+    end
+
+    def update
+        # Auto update content.json
+        open('content.json', 'wb') do |file|
+            file << open(@contentHash[:updatePath]).read
+        end
+    end
+
+    def scenario
+        exit if @progress==:exit
+        puts @contentHash[@progress][:s]
+        self.analyze gets.chomp
+    end
+
+    def analyze(action)
+        puts ""
+        action = action.downcase.tr(" ", "_").to_sym
+        
+        case action
+        when :look
+            self.scenario
+        when :save
+            File.open(@@progressFile, "w") {|f| f.write(@progress)}
+        when :exit
+            puts @contentHash[:exit][:s]
+            exit
+        else
+            if @contentHash[@progress][:actions].key?(action)
+                nextAction = @contentHash[@progress][:actions][action]
+                self.respondTo(@contentHash[nextAction.to_sym])
+            else
+                puts @contentHash[:dont_understand]
+                self.analyze gets.chomp
+            end
+        end
+    end
+
+    def respondTo event
+        if event.is_a?(Hash)
+            puts event[:s]
+            @progress = event[:n].to_sym if event.key?(:n)
+            self.scenario
+        else
+            puts event 
+            self.analyze gets.chomp
+        end
+    end
+
+end
+
+Engine.new()
