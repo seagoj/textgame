@@ -1,0 +1,61 @@
+{
+    "updatePath": "https://www.dropbox.com/s/rilmvncnx5317nt/content.json",
+    "header": "\n\nHappy Birthday, Margaret! \n I hope you enjoy this as much as I enjoyed making it for you. So far, it only covers the first time we met, but I really do plan on adding more (Maybe with your help with the dialogue). :)\n\nWelcome to the adventures of Lady-friend! Let's begin our journey...",
+    "origin" : {
+        "s": "You find yourself on your way to meet a 'friend' at a BBQ. Armed with only your celebratory cigar and scotch, you walk down a dark hallway to a wooden door. You can hear conversation on the other side, but can't quite make it out.",
+        "actions": {
+            "knock_on_the_door": "knock_on_the_door",
+            "knock": "knock_on_the_door",
+            "open_the_door": "open_the_door",
+            "open": "open_the_door"
+        }
+    },
+    "knock_on_the_door": {
+        "s": "You knock on the door and the conversation stops. You hear someone moving towards the door.",
+        "n": "bbq_door_open"
+    },
+    "knock": {
+        "s": "You knock on the door and the conversation stops. You hear someone moving towards the door.",
+        "n": "bbq_door_open"
+    },
+    "open_the_door": "Don't you think you should knock first?",
+    "open": "Don't you think you should knock first?",
+    "bbq_door_open": {
+        "s": "The door opens and there is a creepy, bearded man to greet you.",
+        "actions": {
+            "run": "run",
+            "talk": "bbq_door_talk"
+        }
+    },
+    "run": {
+        "s": "Running was almost certainly a good call. Who knows what might have happened had you stayed.",
+        "n": "exit"
+    },
+    "bbq_door_talk": {
+        "s": "You say hello and the bearded man stands dumbfounded for a second before responding with a greeting that trails off into muttering. He seems friendly enough, but maybe a bit slow.",
+        "n": "bbq"
+    },
+    "dont_understand": "I don't understand. Please select an action [look, take, talk, save, exit]",
+    "exit": {
+        "s": "Sorry to see you go"
+    },
+    "bbq": {
+        "s": "You are beckoned to have a seat and procceed on with casual conversation. The food is good enough and the kegerator is flowing.",
+        "actions": {
+            "drink": "bbq_drink",
+            "smoke": "bbq_smoke",
+            "joke": "bbq_joke",
+            "tell_a_joke": "bbq_joke",
+            "talk": "bbq_talk"
+        }
+    },
+    "bbq_drink": "You decide to partake in the kegerator and the scotch that you brought with you in celebration of St. Patty's with your Nana. After the first keg runs out, you lament the fact and the bearded man volunteers to go get another keg. You are beginning to suspect that it's in an effort to keep you there for some nefarious purpose. Although your impulse to flee is strong, you decide to wait it out.",
+    "bbq_new_keg": "The bearded man returns with the new keg and is grinning ear to ear.",
+    "bbq_smoke": "You decide to smoke the celebratory cigar that you brought with you, prompting the others at the party to do the same.",
+    "bbq_joke": "You tell a joke prompting everyone to laugh, but the bearded man always laughs first and loudest. You're growing suspicious of him...",
+    "bbq_talk": {
+        "s": "Everyone is talking and having a good time, but you begin to notice that each time you talk, the bearded man always focuses on you and you start catching him looking at you out of the corner of your eye. Once the beer and food run out you decide that it's time to leave. The party was pleasant enough, but you're not sure what to make of the bearded man.",
+        "n": "end_of_production"
+    },
+    "end_of_production": "Congratulations! You've reached the end of the story thus far. Please stay tuned for further updates."
+}
